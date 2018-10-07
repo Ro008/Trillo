@@ -1,0 +1,67 @@
+/* ***************************************** CSS CUSTOM PROPERTIES *********************************
+ For this project we are not going to use variables, but CSS custom properties, known as CSS VARIABLES
+With CSS variables, we wouldn't need a pre-processor
+ they can be manipulated in JS
+they cascade and are inheritable
+It's easier to have one selector where we collect all the variables in one place. This one place is the ROOT pseudoclass
+By putting our variables in the ROOT selector, they will be accesible through all the document, it's a global parent element
+Las custom properties se definen así: 
+ --nombre: valor; 
+ Y se llaman así: 
+ selector: var(--nombre);
+ */
+
+:root {
+	--color-primary: #eb2f64; 
+	--color-primary-light: #FF3366;
+	--color-primary-dark: #BA265D;  
+	--color-grey-light-1: #faf9f9;
+	--color-grey-light-2: #f4f2f2;
+	--color-grey-light-3: #f0eeee;
+	--color-grey-light-4: #ccc;
+	--color-grey-dark-1: #333;
+	--color-grey-dark-2: #777;
+	--color-grey-dark-3: #999;
+	--shadow-light: 0 2rem 5rem rgba(0,0,0,0.06);
+	--shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+	--line: 1px solid var(--color-grey-light-2); /* This is a variable inside a variable, which is fine. */
+}
+
+/* ******************************** MEDIA QUERIES (WITH SASS VARIABLES, because CSS custom properties don't work here) **********************/
+$bp-largest: 75em; 		/* 1200px / 16px = 75*/
+$bp-large: 68.75em;  	/* 1100px / 16px = 68.75*/
+$bp-medium: 56.25em;	/* 900px*/
+$bp-small: 37.5em;		/* 600px*/
+$bp-smallest: 31.25em; /* 500px*/
+
+ * {
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+*, 
+*::after, 
+*::before {
+	box-sizing: inherit; 
+}
+
+ html {
+	box-sizing: border-box; 
+	font-size: 62.5%; /* 1rem = 10px. 10px/16px (the browser default) = 62.5%*/
+ 
+ 	@media only screen and (max-width: $bp-large) {
+ 		font-size: 50%; /* 8px*/
+ 	}
+ }
+
+
+ body {
+ 	font-family: "Open Sans", sans-serif; 
+ 	font-weight: 400; 
+ 	line-height: 1.6;
+ 	background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+ 	min-height: 100vh;
+ 	color: var(--color-grey-dark-2);
+ }
